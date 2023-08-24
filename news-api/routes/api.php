@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Admin\DashboardController;
 use App\Http\Controllers\Api\Admin\PermissionController;
+use App\Http\Controllers\Api\Admin\RoleController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,5 +41,14 @@ Route::prefix('admin')->group(function () {
         //permissions all
         Route::get('/permissions/all', [PermissionController::class, 'all'])
         ->middleware('permission:permissions.index');
+
+        //roles all
+        Route::get('/roles/all', [RoleController::class, 'all'])
+        ->middleware('permission:roles.index');
+
+        //roles
+        Route::apiResource('/roles', RoleController::class)
+        ->middleware('permission:roles.index|roles.store|roles.update|roles.delete');
+
     });
 });
