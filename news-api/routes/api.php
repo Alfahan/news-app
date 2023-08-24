@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Admin\DashboardController;
+use App\Http\Controllers\Api\Admin\PermissionController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,5 +32,13 @@ Route::prefix('admin')->group(function () {
     Route::group(['middleware' => 'auth:api'], function () {
         //dashboard
         Route::get('/dashboard', DashboardController::class);
+
+        //permissions
+        Route::get('/permissions', [PermissionController::class, 'index'])
+        ->middleware('permission:permissions.index');
+
+        //permissions all
+        Route::get('/permissions/all', [PermissionController::class, 'all'])
+        ->middleware('permission:permissions.index');
     });
 });
