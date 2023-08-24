@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\Admin\DashboardController;
+use App\Http\Controllers\Api\Auth\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// route login
+Route::post('/login', [LoginController::class, 'index']);
+
+//group route with middleware "auth"
+Route::group(['middleware' => 'auth:api'], function() {
+    // logout
+    Route::post('/logout', [LoginController::class, 'logout']);
+});
+
+//group route with prefix "admin"
+Route::prefix('admin')->group(function () {
+    //group route with middleware "auth:api"
+    Route::group(['middleware' => 'auth:api'], function () {
+        //dashboard
+        Route::get('/dashboard', DashboardController::class);
+    });
 });
