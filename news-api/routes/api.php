@@ -50,5 +50,8 @@ Route::prefix('admin')->group(function () {
         Route::apiResource('/roles', RoleController::class)
         ->middleware('permission:roles.index|roles.store|roles.update|roles.delete');
 
+        //users
+        Route::apiResource('/users', App\Http\Controllers\Api\Admin\UserController::class)
+        ->middleware('permission:users.index|users.store|users.update|users.delete');
     });
 });
