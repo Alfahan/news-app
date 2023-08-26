@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Admin\CategoryController;
 use App\Http\Controllers\Api\Admin\DashboardController;
 use App\Http\Controllers\Api\Admin\PermissionController;
 use App\Http\Controllers\Api\Admin\RoleController;
@@ -54,5 +55,13 @@ Route::prefix('admin')->group(function () {
         //users
         Route::apiResource('/users', UserController::class)
         ->middleware('permission:users.index|users.store|users.update|users.delete');
+
+        //categories all
+        Route::get('/categories/all', [CategoryController::class, 'all'])
+        ->middleware('permission:categories.index');
+
+        //Categories
+        Route::apiResource('/categories', CategoryController::class)
+        ->middleware('permission:categories.index|categories.store|categories.update|categories.delete');
     });
 });
