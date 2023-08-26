@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Admin\DashboardController;
 use App\Http\Controllers\Api\Admin\PermissionController;
 use App\Http\Controllers\Api\Admin\RoleController;
+use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -51,7 +52,7 @@ Route::prefix('admin')->group(function () {
         ->middleware('permission:roles.index|roles.store|roles.update|roles.delete');
 
         //users
-        Route::apiResource('/users', App\Http\Controllers\Api\Admin\UserController::class)
+        Route::apiResource('/users', UserController::class)
         ->middleware('permission:users.index|users.store|users.update|users.delete');
     });
 });
