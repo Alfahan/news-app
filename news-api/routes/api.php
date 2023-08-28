@@ -3,7 +3,9 @@
 use App\Http\Controllers\Api\Admin\CategoryController;
 use App\Http\Controllers\Api\Admin\DashboardController;
 use App\Http\Controllers\Api\Admin\PermissionController;
+use App\Http\Controllers\Api\Admin\PostController;
 use App\Http\Controllers\Api\Admin\RoleController;
+use App\Http\Controllers\Api\Admin\SliderController;
 use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use Illuminate\Http\Request;
@@ -63,5 +65,13 @@ Route::prefix('admin')->group(function () {
         //Categories
         Route::apiResource('/categories', CategoryController::class)
         ->middleware('permission:categories.index|categories.store|categories.update|categories.delete');
+
+        //Posts
+        Route::apiResource('/posts', PostController::class)
+        ->middleware('permission:posts.index|posts.store|posts.update|posts.delete');
+
+        //Sliders
+        Route::apiResource('/sliders', SliderController::class, ['except' => ['create', 'show', 'update']])
+        ->middleware('permission:sliders.index|sliders.store|sliders.delete');
     });
 });
