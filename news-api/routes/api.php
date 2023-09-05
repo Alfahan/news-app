@@ -86,4 +86,16 @@ Route::prefix('public')->group(function () {
     // show category
     Route::get('/categories/{slug}', [PublicCategoryController::class, 'show']);
 
+    //index posts
+    Route::get('/posts', [App\Http\Controllers\Api\Public\PostController::class, 'index']);
+
+    //show posts
+    Route::get('/posts/{slug}', [App\Http\Controllers\Api\Public\PostController::class, 'show']);
+
+    //posts homepage
+    Route::get('/postHomepage', [App\Http\Controllers\Api\Public\PostController::class, 'postHomepage']);
+
+    //store image
+    Route::post('/posts/storeImage', [App\Http\Controllers\Api\Public\PostController::class, 'storeImagePost']);
+
 });

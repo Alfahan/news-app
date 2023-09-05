@@ -22,7 +22,13 @@ class CategoryController extends Controller
         // return with Api Resource
         return new CategoryResource(true, 'List Data Categories', $categories);
     }
-
+    
+    /**
+     * show
+     *
+     * @param  mixed $slug
+     * @return void
+     */
     public function show($slug)
     {
         $category = Category::with('posts.category')->where('slug', $slug)->first();
