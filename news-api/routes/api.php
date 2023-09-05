@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Admin\RoleController;
 use App\Http\Controllers\Api\Admin\SliderController;
 use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\Public\CategoryController as PublicCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -74,4 +75,15 @@ Route::prefix('admin')->group(function () {
         Route::apiResource('/sliders', SliderController::class, ['except' => ['create', 'show', 'update']])
         ->middleware('permission:sliders.index|sliders.store|sliders.delete');
     });
+});
+
+// group route with prefix "public"
+Route::prefix('public')->group(function () {
+
+    // index categories
+    Route::get('/categories', [PublicCategoryController::class, 'index']);
+
+    // show category
+    Route::get('/categories/{slug}', [PublicCategoryController::class, 'show']);
+
 });
