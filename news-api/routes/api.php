@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\Admin\SliderController;
 use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Public\CategoryController as PublicCategoryController;
+use App\Http\Controllers\Api\Public\PostController as PublicPostController;
+use App\Http\Controllers\Api\Public\SliderController as PublicSliderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -87,15 +89,18 @@ Route::prefix('public')->group(function () {
     Route::get('/categories/{slug}', [PublicCategoryController::class, 'show']);
 
     //index posts
-    Route::get('/posts', [App\Http\Controllers\Api\Public\PostController::class, 'index']);
+    Route::get('/posts', [PublicPostController::class, 'index']);
 
     //show posts
-    Route::get('/posts/{slug}', [App\Http\Controllers\Api\Public\PostController::class, 'show']);
+    Route::get('/posts/{slug}', [PublicPostController::class, 'show']);
 
     //posts homepage
-    Route::get('/postHomepage', [App\Http\Controllers\Api\Public\PostController::class, 'postHomepage']);
+    Route::get('/postHomepage', [PublicPostController::class, 'postHomepage']);
 
     //store image
-    Route::post('/posts/storeImage', [App\Http\Controllers\Api\Public\PostController::class, 'storeImagePost']);
+    Route::post('/posts/storeImage', [PublicPostController::class, 'storeImagePost']);
+
+    // index sliders
+    Route::get('/sliders', [PublicSliderController::class, 'index']);
 
 });
