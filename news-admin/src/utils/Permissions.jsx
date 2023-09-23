@@ -9,7 +9,7 @@ export default function hasAnyPermission(permissions) {
     let hasPermission = false;
 
     permissions.forEach(function(item) {
-        if(allPermissions[item]) hasPermission = ture;
+        if(allPermissions[item]) hasPermission = true;
     });
 
     return hasPermission

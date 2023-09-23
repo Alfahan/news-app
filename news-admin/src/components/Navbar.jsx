@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Api from "../api";
 import Cookies from "js-cookie";
-import { toast } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 
 export default function Navbar() {
