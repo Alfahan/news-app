@@ -56,13 +56,13 @@ export default function Dashboard () {
 
     const fetchData = async () => {
         // set axios header dengan type Authorization + Bearer token
-        Api.defaults.headers.common['Authorization'] = `Baerer ${token}`
+        Api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
         await Api.get('/api/admin/dashboard')
         .then(response => {
             // set response to state
             setCountCategories(response.data.data.categories);
-            setCountPosts(response.data.data.post);
+            setCountPosts(response.data.data.posts);
             setCountSliders(response.data.data.sliders);
             setCountUsers(response.data.data.users);
 
