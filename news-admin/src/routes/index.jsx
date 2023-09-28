@@ -26,7 +26,10 @@ const RolesIndex = lazy(() => import('../views/Roles/Index.jsx'));
 const RoleCreate = lazy(() => import('../views/Roles/Create.jsx'));
 
 // import view role edit
-const RoleEdit = lazy(() => import('../views/Roles/Edit.jsx'))
+const RoleEdit = lazy(() => import('../views/Roles/Edit.jsx'));
+
+// import view users index
+const UsersIndex = lazy(() => import('../views/Users/Index.jsx'));
 
 export default function RoutesIndex() {
     return(
@@ -96,6 +99,18 @@ export default function RoutesIndex() {
                     <Suspense>
                         <PrivateRoutes>
                             <RoleEdit />
+                        </PrivateRoutes>
+                    </Suspense>
+                }
+            />
+
+            {/* private route "/users" */}
+            <Route
+                path="/users"
+                element={
+                    <Suspense>
+                        <PrivateRoutes>
+                            <UsersIndex />
                         </PrivateRoutes>
                     </Suspense>
                 }
