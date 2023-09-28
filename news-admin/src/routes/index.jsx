@@ -74,7 +74,6 @@ export default function RoutesIndex() {
                 }
             />
 
-
             {/* private route "/roles/create" */}
             <Route
                 path="/roles/create"
