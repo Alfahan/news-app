@@ -34,6 +34,9 @@ const UsersIndex = lazy(() => import('../views/Users/Index.jsx'));
 // import view user create
 const UserCreate = lazy(() => import('../views/Users/Create.jsx'));
 
+// import view user edit
+const UserEdit = lazy(() => import('../views/Users/Edit.jsx'));
+
 export default function RoutesIndex() {
     return(
         <Routes>
@@ -130,7 +133,18 @@ export default function RoutesIndex() {
                     </Suspense>
                 }
             />
-            
+
+            {/* private route "/users/edit/:id" */}
+            <Route
+                path="/users/edit/:id"
+                element={
+                    <Suspense>
+                        <PrivateRoutes>
+                            <UserEdit />
+                        </PrivateRoutes>
+                    </Suspense>
+                }
+            />
         </Routes>
     )
 }
