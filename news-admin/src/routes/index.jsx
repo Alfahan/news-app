@@ -37,6 +37,9 @@ const UserCreate = lazy(() => import('../views/Users/Create.jsx'));
 // import view user edit
 const UserEdit = lazy(() => import('../views/Users/Edit.jsx'));
 
+// import view categories index
+const CategoriesIndex = lazy(() => import('../views/Categories/Index.jsx'));
+
 export default function RoutesIndex() {
     return(
         <Routes>
@@ -141,6 +144,18 @@ export default function RoutesIndex() {
                     <Suspense>
                         <PrivateRoutes>
                             <UserEdit />
+                        </PrivateRoutes>
+                    </Suspense>
+                }
+            />
+
+            {/* private route "/categories" */}
+            <Route
+                path="/categories"
+                element={
+                    <Suspense>
+                        <PrivateRoutes>
+                            <CategoriesIndex />
                         </PrivateRoutes>
                     </Suspense>
                 }
